@@ -17,11 +17,6 @@
 
 package org.strongswan.android.ui;
 
-import org.strongswan.android.data.CertificateProvider;
-import org.strongswan.android.data.LogContentProvider;
-import org.strongswan.android.logic.TrustedCertificateManager;
-import org.strongswan.android.logic.TrustedCertificateManager.TrustedCertificateSource;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -32,30 +27,20 @@ import android.app.DownloadManager;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.app.LoaderManager;
 import android.app.Service;
 import android.content.ActivityNotFoundException;
-import android.content.AsyncTaskLoader;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.Loader;
 import android.content.ServiceConnection;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.net.Uri;
 import android.net.VpnService;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.IBinder;
-import android.provider.MediaStore;
-import android.security.KeyChain;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -66,6 +51,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
 
 import org.strongswan.android.HirechyFragment;
 import org.strongswan.android.R;
@@ -84,28 +71,15 @@ import org.strongswan.android.model.country.CountryResponse;
 import org.strongswan.android.security.TrustedCertificateEntry;
 import org.strongswan.android.utils.Utils;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import java.security.KeyStore;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
-import io.github.skyhacker2.sqliteonweb.SQLiteOnWeb;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -159,7 +133,9 @@ public class MainActivity extends Activity implements VpnFragment.OnVpnProfileSe
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SQLiteOnWeb.init(this).start();
+//        SQLiteOnWeb.init(this).start();
+        FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
+        crashlytics.sendUnsentReports();
 
         setContentView(R.layout.main);
         getCountryList();

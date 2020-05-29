@@ -1,14 +1,19 @@
 package org.strongswan.android;
 
 import android.app.Fragment;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import static org.strongswan.android.api.AndyConstants.TAG;
 
 
 public class ProfileFragment extends Fragment {
@@ -33,9 +38,17 @@ public class ProfileFragment extends Fragment {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 //progDailog.show();
-                view.loadUrl(url);
+//                view.loadUrl(url);
+                if (url == null || url.startsWith("http://") || url.startsWith("https://")) return false;
 
-                return true;
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    view.getContext().startActivity(intent);
+                    return true;
+                } catch (Exception e) {
+                    Log.i(TAG, "shouldOverrideUrlLoading Exception:" + e);
+                    return true;
+                }
             }
             @Override
             public void onPageFinished(WebView view, final String url) {
@@ -44,7 +57,6 @@ public class ProfileFragment extends Fragment {
         });
 
         mWebView.loadUrl("http://www.baidu.com");
-
     }
 
     @Override

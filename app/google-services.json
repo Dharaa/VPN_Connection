@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "682749776312",
+    "firebase_url": "https://vpnconnection-d538d.firebaseio.com",
+    "project_id": "vpnconnection-d538d",
+    "storage_bucket": "vpnconnection-d538d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:682749776312:android:9cfccb2ea1387bad227f4d",
+        "android_client_info": {
+          "package_name": "org.strongswan.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "682749776312-ttf8gc9sogn4o3jeiiiruvuolmcgua77.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.strongswan.android",
+            "certificate_hash": "60c975711fbb019b84e8719aacf830e8ae4dc68a"
+          }
+        },
+        {
+          "client_id": "682749776312-g695jfsd9f5s784q33e6534j3fgb59an.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeSUh9PDmRXAwKxHoq-sjpKGU8CGfwh1E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "682749776312-g695jfsd9f5s784q33e6534j3fgb59an.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
